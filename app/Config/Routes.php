@@ -42,7 +42,8 @@ $routes->get('signout', 'AuthController::SignOut');
 
 $routes->group('dashboard', ['filter' => 'authFilter'], function ($routes) {
     $routes->get('/', 'DashboardController::index');
-    $routes->get('users', 'DashboardController::Users');
+    $routes->get('users', 'UserController::index');
+    $routes->get('users/delete/(:num)', 'UserController::deleteUser/$1');
 });
 
 

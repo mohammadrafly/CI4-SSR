@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Noble UI</title>
+	<title>CI4 SSR</title>
 	<link rel="stylesheet" href="<?= base_url('assets/vendors/core/core.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') ?>">
 	<link rel="stylesheet" href="<?= base_url('assets/fonts/feather-font/css/iconfont.css') ?>">
@@ -43,34 +43,41 @@
     <script src="<?= base_url('assets/js/datepicker.js') ?>"></script>
     <?= $this->renderSection('script') ?>
             <script>
-                $(document).ready(function() {
-                    $("#SignOut").click( function() {
-                            $.ajax({
-                                url: "<?= base_url('signout') ?>",
-                                type: "get",
-                                success:function(respond){
-                                    Swal.fire({
-                                        icon: respond.icon,
-                                        title: respond.title,
-                                        text: respond.text,
-                                        timer: 3000,
-                                        showCancelButton: false,
-                                        showConfirmButton: false
-                                    })
-                                    .then (function() {
-                                        window.location.href = "<?= base_url('/') ?>";
-                                    });
-                                },
-                                error:function(respond){
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Oops...',
-                                        text: 'Server Error!',
-                                    });
-                                }
-                            })
-                    }); 
-                });
+                function signOut() {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You want to sign out?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, I Want to Sign Out!'
+                        }).then(function (result) {
+                            if (result.value) {
+                                $.ajax({
+                                    url: "<?= base_url('signout')?>",
+                                    type: "GET",
+                                    dataType: 'JSON',
+                                    success: function (respond) {
+                                        swal.fire({
+                                            icon: respond.icon,
+                                            title: respond.title,
+                                            text: respond.text,
+                                            showCancelButton: false,
+                                            showConfirmButton: false,
+                                            timer: 3000
+                                        }).then (function() {
+                                            window.location.href = "<?= base_url('/') ?>";
+                                        });
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        swal.hideLoading();
+                                        swal.fire("!Opps ", "Something went wrong, try again later", "error");
+                                    }
+                                });
+                            };
+                        });
+                }
             </script>
 </body>
 </html> 

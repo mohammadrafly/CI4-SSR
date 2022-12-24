@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>NobleUI Responsive Bootstrap 4 Dashboard Template</title>
+	<title>CI4 SSR</title>
 	<link rel="stylesheet" href="<?= base_url('assets/vendors/core/core.css')?>">
 	<link rel="stylesheet" href="<?= base_url('assets/fonts/feather-font/css/iconfont.css')?>">
 	<link rel="stylesheet" href="<?= base_url('assets/vendors/flag-icon-css/css/flag-icon.min.css')?>">

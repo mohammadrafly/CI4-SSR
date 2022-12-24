@@ -15,6 +15,7 @@
                                             <th>Email</th>
                                             <th>Created At</th>
                                             <th>Updated At</th>
+                                            <th>Option</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -24,6 +25,9 @@
                                             <td><?= $d['email'] ?></td>
                                             <td><?= $d['created_at'] ?></td>
                                             <td><?= $d['updated_at'] ?></td>
+                                            <td>
+                                                <button class="btn btn-danger" onclick="deleteUser(<?= $d['id']?>)">Delete</button>
+                                            </td>
                                         </tr>
                                         <?php endforeach ?>
                                         </tbody>
@@ -33,4 +37,38 @@
                         </div>
 					</div>
 				</div>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+                <script>
+                    function deleteUser(id) {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then(function (result) {
+                            if (result.value) {
+                                $.ajax({
+                                    url: "<?= base_url('dashboard/users/delete/')?>/"+id,
+                                    type: "GET",
+                                    dataType: 'JSON',
+                                    success: function (data) {
+                                        swal.fire({
+                                            position: 'top-end',
+                                            icon: 'success',
+                                            title: 'User  deleted successfully',
+                                            showConfirmButton: false,
+                                            timer: 2000
+                                        });
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        swal.fire("!Opps ", "Something went wrong, try again later", "error");
+                                    }
+                                });
+                            };
+                        });
+                    }
+                </script>
 <?= $this->endSection() ?>

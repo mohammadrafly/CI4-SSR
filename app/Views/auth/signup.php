@@ -3,6 +3,7 @@
 <?= $this->section('content') ?>
                     <a href="#" class="noble-ui-logo d-block mb-2">Noble<span>UI</span></a>
                     <h5 class="text-muted font-weight-normal mb-4">Create a free account.</h5>
+                    <form id="SignUp">
                       <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" autocomplete="Username" placeholder="Username">
@@ -16,13 +17,15 @@
                         <input type="password" class="form-control" id="password" autocomplete="current-password" placeholder="Password">
                       </div>
                       <div class="mt-3">
-                        <a href="javascript:void(0);" id="SignUp" class="btn btn-primary text-white mr-2 mb-2 mb-md-0">Sing up</a>
+                        <button type="submit" class="btn btn-primary text-white mr-2 mb-2 mb-md-0">Sign Up</button>
                       </div>
+                    </form>
                       <a href="<?= base_url('signin')?>" class="d-block mt-3 text-muted">Already a user? Sign in</a>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <script>
             $(document).ready(function() {
-                $("#SignUp").click( function() {
+                $("#SignUp").submit( function (e) {
+                    e.preventDefault();
                     var name = $("#name").val();
                     var email = $("#email").val();
                     var password = $("#password").val();

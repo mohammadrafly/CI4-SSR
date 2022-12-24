@@ -223,7 +223,7 @@
 											</a>
 										</li>
 										<li class="nav-item">
-											<a href="javascript:void(0);" id="SignOut" class="btn-signout nav-link">
+											<a href="javascript:void(0);" onclick="signOut()" class="nav-link">
 												<i data-feather="log-out"></i>
 												<span>Log Out</span>
                                             </a>

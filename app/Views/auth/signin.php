@@ -9,6 +9,7 @@
                         </div>
                     <?php endif; ?>
                     <h5 class="text-muted font-weight-normal mb-4">Welcome back! Log in to your account.</h5>
+                    <form id="SignIn">
                       <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" placeholder="Email">
@@ -18,13 +19,15 @@
                         <input type="password" class="form-control" id="password" autocomplete="current-password" placeholder="Password">
                       </div>
                       <div class="mt-3">
-                        <a href="javascript:void(0);" id="SignIn" class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Login</a>
+                        <button type="submit" class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Sign In</button>
                       </div>
+                    </form>
                       <a href="<?php echo base_url('signup') ?>" class="d-block mt-3 text-muted">Not a user? Sign up</a>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <script>
             $(document).ready(function() {
-                $("#SignIn").click( function() {
+                $("#SignIn").submit( function (e) {
+                    e.preventDefault();
                     var email = $("#email").val();
                     var password = $("#password").val();
                     if (email.length == "") {

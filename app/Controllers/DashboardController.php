@@ -11,11 +11,4 @@ class DashboardController extends BaseController
     {
         return view('layout/app');
     }
-
-    public function Users()
-    {
-        $model = new UsersModel();
-        $data['content'] = $model->findAll();
-        return view('users', $data);
-    }
 }
