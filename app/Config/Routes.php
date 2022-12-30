@@ -43,6 +43,8 @@ $routes->get('signout', 'AuthController::SignOut');
 $routes->group('dashboard', ['filter' => 'authFilter'], function ($routes) {
     $routes->get('/', 'DashboardController::index');
     $routes->get('users', 'UserController::index');
+    $routes->get('users/edit/(:num)', 'UserController::editUser/$1');
+    $routes->post('users/update', 'UserController::updateUser');
     $routes->get('users/delete/(:num)', 'UserController::deleteUser/$1');
 });
 
